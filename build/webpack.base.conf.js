@@ -2,6 +2,12 @@ var path = require('path')
 var utils = require('./utils')
 var config = require('../config')
 var vueLoaderConfig = require('./vue-loader.conf')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractLess = new ExtractTextPlugin({
+    filename: '[name].[contenthash].css',
+    disable: process.env.NODE_ENV === 'development'
+});
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -46,6 +52,27 @@ module.exports = {
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
       },
+      // {
+      //   test: /\.css$/,
+      //     include: [
+      //         path.resolve(__dirname, 'not_exist_path')
+      //     ],
+      //     use: ['vue-style-loader', 'css-loader', 'postcss-loader']
+      // },
+      // {
+      //   test: /\.less$/i,
+      //   use: [
+      //       {
+      //           loader: 'style-loader'
+      //       },
+      //       {
+      //           loader: 'css-loader'
+      //       },
+      //       {
+      //           loader: 'less-loader'
+      //       }
+      //   ]
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
@@ -71,5 +98,8 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+      extractLess
+  ]
 }

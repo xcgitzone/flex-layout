@@ -1,0 +1,32 @@
+.title {
+    font-size: 25px;
+    padding-bottom: 30px;
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    &-top {
+        position: relative;
+        width: 100%;
+        height: 100px;
+        background-color: #2DB7F6;
+        &-resizer {
+            position: absolute;
+            width: 100%;
+            height: 8px;
+            left: 0px;
+            bottom: 0px;
+            cursor: row-resize;
+            border-top: 1px solid #d1d1d1;
+            border-bottom: 1px solid #d1d1d1;
+            background: url(http://lifeil.com/cdn/upload/image/demos/sidebar-divider-dots.png) center center no-repeat #ececec;
+        }
+    }
+    &-bottom {
+        width: 100%;
+        flex-grow: 1;
+    }
+}
